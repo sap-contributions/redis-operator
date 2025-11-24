@@ -6,6 +6,8 @@
  
 - Redis Stream and Pub/Sub Support
     - Add support for Redis Streams and Pub/Sub messaging patterns, allowing users to manage Redis Stream-based applications directly through the operator.
+
+test123
  
 - Valkey Support
 		- Adding support for Valkey standalone.
