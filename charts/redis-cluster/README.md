@@ -104,6 +104,7 @@ helm delete <my-release> --namespace <namespace>
 | redisCluster.redisSecret.secretKey | string | `""` |  |
 | redisCluster.redisSecret.secretName | string | `""` |  |
 | redisCluster.resources | object | `{}` |  |
+| redisCluster.serviceType | string | `"ClusterIP"` |  |
 | redisCluster.tag | string | `"v7.0.15"` |  |
 | redisExporter.enabled | bool | `false` |  |
 | redisExporter.env | list | `[]` |  |
@@ -118,14 +119,7 @@ helm delete <my-release> --namespace <namespace>
 | serviceMonitor.interval | string | `"30s"` |  |
 | serviceMonitor.namespace | string | `""` | Namespace where servicemonitor resource will be created, if empty it will be created in the same namespace as the redis-cluster |
 | serviceMonitor.scrapeTimeout | string | `"10s"` |  |
-| sidecars.env | object | `{}` |  |
-| sidecars.image | string | `""` |  |
-| sidecars.imagePullPolicy | string | `"IfNotPresent"` |  |
-| sidecars.name | string | `""` |  |
-| sidecars.resources.limits.cpu | string | `"100m"` |  |
-| sidecars.resources.limits.memory | string | `"128Mi"` |  |
-| sidecars.resources.requests.cpu | string | `"50m"` |  |
-| sidecars.resources.requests.memory | string | `"64Mi"` |  |
+| sidecars | list | `[]` |  |
 | storageSpec.nodeConfVolume | bool | `true` |  |
 | storageSpec.nodeConfVolumeClaimTemplate.spec.accessModes[0] | string | `"ReadWriteOnce"` |  |
 | storageSpec.nodeConfVolumeClaimTemplate.spec.resources.requests.storage | string | `"1Gi"` |  |

@@ -56,6 +56,10 @@ spec:
     {{- if .Values.redisCluster.imagePullSecrets}}
     imagePullSecrets: {{ toYaml .Values.redisCluster.imagePullSecrets | nindent 4 }}
     {{- end }}
+    {{- if .Values.redisCluster.serviceType }}
+    service:
+      serviceType: {{ .Values.redisCluster.serviceType }}
+    {{- end }}
     {{- if .Values.redisCluster.resources}}
     resources: {{ toYaml .Values.redisCluster.resources | nindent 6 }}
     {{- end }}
@@ -95,8 +99,8 @@ spec:
     persistentVolumeClaim: {{ .Values.acl.persistentVolumeClaim | quote }}
     {{- end }}
   {{- end }}
-  {{- if and .Values.sidecars (ne .Values.sidecars.name "") (ne .Values.sidecars.image "") }}
-  sidecars: {{ include "sidecar.properties" . | nindent 4 }}
+  {{- if .Values.sidecars }}
+  sidecars: {{ toYaml .Values.sidecars | nindent 4 }}
   {{- end }}
   {{- if and .Values.initContainer .Values.initContainer.enabled (ne .Values.initContainer.image "") }}
   initContainer: {{ include "initContainer.properties" . | nindent 4 }}
