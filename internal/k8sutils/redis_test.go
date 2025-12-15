@@ -340,14 +340,13 @@ func TestCreateSingleLeaderRedisCommand(t *testing.T) {
 	cr := &rcvb2.RedisCluster{}
 	cmd := CreateSingleLeaderRedisCommand(context.TODO(), cr)
 
-	assert.Equal(t, "redis-cli", cmd[0])
-	assert.Equal(t, "CLUSTER", cmd[1])
-	assert.Equal(t, "ADDSLOTS", cmd[2])
+	assert.Equal(t, "CLUSTER", cmd[0])
+	assert.Equal(t, "ADDSLOTS", cmd[1])
 
-	expectedLength := 16384 + 3
+	expectedLength := 16384 + 2
 
 	assert.Equal(t, expectedLength, len(cmd))
-	assert.Equal(t, "0", cmd[3])
+	assert.Equal(t, "0", cmd[2])
 	assert.Equal(t, "16383", cmd[expectedLength-1])
 }
 
@@ -371,7 +370,7 @@ func TestCreateMultipleLeaderRedisCommand(t *testing.T) {
 				},
 			},
 			expectedCommands: []string{
-				"redis-cli", "--cluster", "create",
+				"--cluster", "create",
 				"mycluster-leader-0.mycluster-leader-headless.default.svc:6379",
 				"mycluster-leader-1.mycluster-leader-headless.default.svc:6379",
 				"mycluster-leader-2.mycluster-leader-headless.default.svc:6379",
@@ -391,7 +390,7 @@ func TestCreateMultipleLeaderRedisCommand(t *testing.T) {
 				},
 			},
 			expectedCommands: []string{
-				"redis-cli", "--cluster", "create",
+				"--cluster", "create",
 				"192.168.1.1:6379",
 				"192.168.1.2:6379",
 				"192.168.1.3:6379",
