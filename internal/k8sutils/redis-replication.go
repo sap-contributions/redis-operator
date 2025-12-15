@@ -28,7 +28,7 @@ func CreateReplicationService(ctx context.Context, cr *rrvb2.RedisReplication, c
 	annotations := generateServiceAnots(cr.ObjectMeta, nil, epp)
 	objectMetaInfo := generateObjectMetaInformation(cr.Name, cr.Namespace, labels, annotations)
 	headlessObjectMetaInfo := generateObjectMetaInformation(cr.Name+"-headless", cr.Namespace, labels, annotations)
-	additionalObjectMetaInfo := generateObjectMetaInformation(cr.Name+"-additional", cr.Namespace, labels, generateServiceAnots(cr.ObjectMeta, cr.Spec.KubernetesConfig.GetServiceAnnotations(), epp))
+
 	masterLabels := util.MergeMap(
 		labels, map[string]string{common.RedisRoleLabelKey: common.RedisRoleLabelMaster},
 	)
@@ -37,6 +37,7 @@ func CreateReplicationService(ctx context.Context, cr *rrvb2.RedisReplication, c
 	)
 	masterObjectMetaInfo := generateObjectMetaInformation(cr.Name+"-master", cr.Namespace, masterLabels, annotations)
 	replicaObjectMetaInfo := generateObjectMetaInformation(cr.Name+"-replica", cr.Namespace, replicaLabels, annotations)
+	additionalObjectMetaInfo := generateObjectMetaInformation(cr.Name+"-additional", cr.Namespace, masterLabels, generateServiceAnots(cr.ObjectMeta, cr.Spec.KubernetesConfig.GetServiceAnnotations(), epp))
 
 	if err := CreateOrUpdateService(ctx, cr.Namespace, headlessObjectMetaInfo, redisReplicationAsOwner(cr), disableMetrics, true, "ClusterIP", common.RedisPort, cl); err != nil {
 		log.FromContext(ctx).Error(err, "Cannot create replication headless service for Redis")
