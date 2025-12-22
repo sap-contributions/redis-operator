@@ -230,7 +230,7 @@ data:
   go.mod: |
     module data-assert
     
-    go 1.23.4
+    go 1.25.5
     
     require (
     	github.com/redis/go-redis/v9 v9.7.3
@@ -274,7 +274,7 @@ metadata:
 spec:
   containers:
     - name: data-assert
-      image: docker.m.daocloud.io/library/golang:1.23.4
+      image: docker.m.daocloud.io/library/golang:1.25.5
       command: ["/bin/sh", "-c"]
       args:
         - |
