@@ -4,6 +4,7 @@ go 1.23.4
 
 require (
 	github.com/avast/retry-go v3.0.0+incompatible
+	github.com/avast/retry-go/v5 v5.0.0
 	github.com/banzaicloud/k8s-objectmatcher v1.8.0
 	github.com/go-logr/logr v1.4.3
 	github.com/go-redis/redismock/v9 v9.2.0
@@ -14,7 +15,7 @@ require (
 	github.com/redis/go-redis/v9 v9.11.0
 	github.com/spf13/cobra v1.7.0
 	github.com/spf13/viper v1.19.0
-	github.com/stretchr/testify v1.10.0
+	github.com/stretchr/testify v1.11.1
 	gomodules.xyz/jsonpatch/v2 v2.4.0
 	k8s.io/api v0.29.4
 	k8s.io/apimachinery v0.29.4
@@ -26,7 +27,7 @@ require (
 
 require (
 	emperror.dev/errors v0.8.0 // indirect
-	github.com/Showmax/go-fqdn v1.0.0 // indirect
+	github.com/Showmax/go-fqdn v1.0.0
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/blang/semver/v4 v4.0.0 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
